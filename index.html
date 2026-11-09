@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Portfolio of Maimuna Morshed, CSE graduate working in machine learning, data analysis and full-stack web development.">
+<title>Maimuna Morshed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one long scroll. Top nav with a Hire me button, hero with photo, then sections that each open with a small lowercase label over a large heading.
+   One bold moment: two signal traces (face, voice) under the hero, echoing the thesis. */
+:root{
+  --bg:#F2F5F8; --surface:#FFFFFF; --ink:#0E1B2C; --muted:#4A5A6E; --line:#C9D3DE; --accent:#1F46D1; --on-accent:#FFFFFF;
+  --f-display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+  --f-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#0B121C;--surface:#131D2B;--ink:#E8EEF6;--muted:#9BABBF;--line:#273548;--accent:#8CA8FF;--on-accent:#0B121C;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#0B121C;--surface:#131D2B;--ink:#E8EEF6;--muted:#9BABBF;--line:#273548;--accent:#8CA8FF;--on-accent:#0B121C;color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:1rem}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--f-body);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:.2em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+p{margin:0}
+ul,ol{margin:0}
+
+.wrap{
+  max-width:68rem;margin-inline:auto;
+  padding-block:clamp(1.25rem,3vw,2.25rem) clamp(1.5rem,4vw,2.5rem);
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+
+/* nav */
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem 2rem;font:500 .78rem/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.top nav{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--accent)}
+.top nav a.home{color:var(--ink)}
+
+/* buttons */
+.btn{display:inline-block;font:500 .82rem/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:.85rem 1.2rem;border-radius:3px;border:1px solid var(--accent);color:var(--accent);background:transparent;cursor:pointer}
+.btn:hover{text-decoration:none;background:var(--surface)}
+.btn.primary{background:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{background:var(--accent);filter:brightness(1.08)}
+.btn.sm{padding:.6rem .9rem;font-size:.74rem}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"text photo";gap:2rem 3rem;align-items:end;padding-top:clamp(2.5rem,7vw,5rem)}
+.hero-text{grid-area:text;min-width:0}
+.photo{grid-area:photo;margin:0 6px 6px 0}
+.photo img{display:block;width:132px;height:auto;border-radius:3px;outline:1px solid var(--line);outline-offset:6px}
+.eyebrow{font:500 .8rem/1.4 var(--f-mono);letter-spacing:.04em;color:var(--muted);margin-bottom:1.25rem}
+h1{font:800 clamp(3rem,9.5vw,6.5rem)/.92 var(--f-display);letter-spacing:-.035em;margin:0;text-wrap:balance}
+.lede{font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.45;max-width:38rem;margin-top:1.5rem}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.scroll{display:inline-block;margin-top:2rem;font:500 .78rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.scroll:hover{color:var(--accent)}
+.signal{display:block;width:100%;height:clamp(64px,10vw,110px);margin-top:clamp(2rem,5vw,3.5rem)}
+.signal path{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+#w1{stroke:var(--accent);stroke-width:2.5}
+#w2{stroke:var(--muted);stroke-width:1.5;opacity:.55}
+
+/* sections */
+.sec{padding-block:clamp(3rem,7vw,5rem);border-top:1px solid var(--line)}
+.label{font:500 .78rem/1.4 var(--f-mono);letter-spacing:.08em;color:var(--muted);margin-bottom:.75rem}
+h2{font:700 clamp(1.9rem,4.6vw,3rem)/1.05 var(--f-display);letter-spacing:-.025em;margin:0;text-wrap:balance;max-width:36rem}
+.sec-body{margin-top:2.25rem;min-width:0}
+h3{font:700 1.3rem/1.2 var(--f-display);letter-spacing:-.015em;margin:0;text-wrap:balance}
+.meta{font:400 .82rem/1.6 var(--f-mono);color:var(--muted)}
+.prose p{max-width:40rem}
+.prose p+p{margin-top:1rem}
+
+/* research */
+.flow{list-style:none;padding:0;margin-top:2.75rem;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.25rem}
+.flow li{position:relative;border-top:2px solid var(--line);padding-top:1rem;font-size:.95rem;line-height:1.4}
+.flow li::before{content:"";position:absolute;top:-6px;left:0;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.flow .k{display:block;font:500 .72rem/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.metrics{list-style:none;padding:0;margin-top:3rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem}
+.metrics li{border-top:1px solid var(--line);padding-top:1rem}
+.num{font:700 clamp(2.2rem,5vw,3.3rem)/1 var(--f-display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.cap{margin-top:.6rem;font-size:.92rem;line-height:1.45;color:var(--muted)}
+
+/* capabilities */
+.langs{font:400 .9rem/1.5 var(--f-mono);color:var(--muted);margin-bottom:1.5rem}
+.langs b{font-weight:500;color:var(--ink)}
+.caps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.caps li{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:1.4rem;display:flex;flex-direction:column;gap:.6rem}
+.caps p{font-size:.97rem;line-height:1.5}
+.caps .tools{margin-top:auto;padding-top:.4rem;font:400 .78rem/1.6 var(--f-mono);color:var(--muted)}
+
+/* projects */
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.chip{font:500 .78rem/1 var(--f-mono);letter-spacing:.04em;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.55rem 1rem;cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.projects{list-style:none;padding:0;display:grid;gap:1rem}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:1.4rem;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 2rem}
+.proj .kind{display:block;font:500 .72rem/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.proj h3{font-size:1.55rem}
+.proj p{margin-top:.5rem;max-width:40rem}
+.proj .go{align-self:start;font:500 .85rem/1.2 var(--f-mono);white-space:nowrap;padding-top:1.25rem}
+
+/* timelines */
+.timeline{list-style:none;padding:0;margin:0 0 0 6px;border-left:2px solid var(--line)}
+.timeline>li{position:relative;padding:0 0 2rem 1.75rem}
+.timeline>li:last-child{padding-bottom:0}
+.timeline>li::before{content:"";position:absolute;left:-8px;top:.3rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.timeline .when{display:block;font:500 .82rem/1.4 var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums;margin-bottom:.35rem}
+.timeline .org{margin-top:.25rem;color:var(--muted)}
+.timeline ul{margin-top:.75rem;padding-left:1.1rem;max-width:40rem}
+.timeline ul li+li{margin-top:.35rem}
+.timeline .detail{margin-top:.6rem;max-width:40rem;font-size:.95rem;color:var(--muted)}
+.lead-in{max-width:40rem;margin-bottom:2rem}
+.sub{font:500 .78rem/1.4 var(--f-mono);letter-spacing:.08em;color:var(--muted);margin:3rem 0 1.5rem}
+
+/* references */
+.ref{max-width:30rem;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:1.4rem}
+.ref p{margin-top:.25rem;color:var(--muted)}
+
+/* contact */
+.pitch{font:800 clamp(2rem,5vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.03em;text-wrap:balance;max-width:32rem}
+.mailrow{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.25rem;margin-top:2rem}
+.mail{font:600 clamp(1.2rem,3.4vw,2rem)/1.2 var(--f-display);letter-spacing:-.01em;overflow-wrap:anywhere}
+#copied{font:400 .8rem/1.4 var(--f-mono);color:var(--muted)}
+.pills{list-style:none;padding:0;margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.6rem}
+.pill{display:inline-block;font:500 .82rem/1 var(--f-mono);text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.7rem 1.1rem;background:var(--surface)}
+.pill:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.where{margin-top:1.25rem;font:400 .85rem/1.5 var(--f-mono);color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding-top:1.5rem;font:400 .78rem/1.4 var(--f-mono);letter-spacing:.06em;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem}
+
+@media (max-width:900px){
+  .flow{grid-template-columns:1fr;gap:0}
+  .flow li{border-top:0;border-left:2px solid var(--line);padding:0 0 1.5rem 1.25rem}
+  .flow li:last-child{padding-bottom:0}
+  .flow li::before{top:.3rem;left:-6px}
+  .metrics{grid-template-columns:1fr;gap:1.5rem}
+  .caps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;grid-template-areas:"photo" "text";align-items:start}
+  .photo img{width:96px}
+}
+@media (max-width:560px){
+  .caps{grid-template-columns:1fr}
+  .proj{grid-template-columns:1fr}
+  .proj .go{padding-top:.25rem}
+}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="top">
+    <nav aria-label="Sections">
+      <a class="home" href="#top">Home</a>
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn primary sm" href="mailto:mai00muna.23@gmail.com">Hire me</a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">// CSE graduate · BRAC University · Dhaka</p>
+      <h1>Maimuna Morshed</h1>
+      <p class="lede">I work on machine learning, data analysis and full-stack web development, and I have run communications and HR for a student organization of 100+ members.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+      <a class="scroll" href="#about">Scroll ↓</a>
+    </div>
+    <figure class="photo">
+      <img src="data:image/jpeg;base64,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" width="154" height="195" alt="Portrait of Maimuna Morshed">
+    </figure>
+  </section>
+
+  <svg class="signal" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path id="w2" d="M0 50 L1000 50"/>
+    <path id="w1" d="M0 50 L1000 50"/>
+  </svg>
+
+  <section class="sec" id="about">
+    <p class="label">about</p>
+    <h2>Building models, software and teams</h2>
+    <div class="sec-body prose">
+      <p>I graduated in Computer Science and Engineering from BRAC University with a CGPA of 3.58 out of 4.00. My work so far covers machine learning, data analysis and full-stack web development, using Python, SQL, pandas and Power BI.</p>
+      <p>My undergraduate thesis built a deep learning pipeline for multimodal depression detection. Outside the lab, I led communications for a student organization with more than 100 members and coordinated its HR and volunteer operations. That work taught me to manage people, information and deadlines.</p>
+      <p>I am looking for a role where I can use both the technical and the organizational side of that experience, and keep growing.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="research">
+    <p class="label">research</p>
+    <h2>Multimodal depression detection</h2>
+    <div class="sec-body">
+      <div class="prose">
+        <h3>Undergraduate thesis, using deep learning</h3>
+        <p class="meta" style="margin-top:.6rem">BRAC University, Dept. of CSE · Jan 2025 to June 2026<br>Supervisor: Md. Tawhid Anwar, Senior Lecturer, CSE</p>
+        <p style="margin-top:1.25rem">I designed and deployed a multimodal deep learning pipeline that detects depression from facial and acoustic signals. It covers the full machine learning workflow, from data preprocessing and feature extraction to ensemble optimization.</p>
+        <p>I translated the models' outputs into evaluation metrics (AUC, recall and accuracy) so the research conclusions could be read and checked.</p>
+      </div>
+
+      <ol class="flow" aria-label="Pipeline stages">
+        <li><span class="k">Input</span>Facial and acoustic signals</li>
+        <li><span class="k">Prepare</span>Data preprocessing</li>
+        <li><span class="k">Features</span>273-dimensional feature extraction</li>
+        <li><span class="k">Model</span>Ensemble of RF, MLP and CatBoost</li>
+        <li><span class="k">Evaluate</span>AUC, recall and accuracy</li>
+      </ol>
+
+      <ul class="metrics">
+        <li><p class="num">76.92%</p><p class="cap">Depression detection accuracy, ahead of published baseline models</p></li>
+        <li><p class="num">93.24%</p><p class="cap">Accuracy of the FER ensemble model</p></li>
+        <li><p class="num">72.47%</p><p class="cap">Accuracy of both models combined, on a test set of 149 videos with audio</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="skills">
+    <p class="label">skills</p>
+    <h2>What I work with</h2>
+    <div class="sec-body">
+      <p class="langs"><b>Languages</b> &nbsp;Python, SQL, Java</p>
+      <ul class="caps">
+        <li>
+          <h3>Machine learning</h3>
+          <p>Multimodal pipelines, from preprocessing to ensemble evaluation.</p>
+          <p class="tools">Python · pandas · NumPy · feature extraction · predictive analytics</p>
+        </li>
+        <li>
+          <h3>Data analysis</h3>
+          <p>Cleaning, manipulating and reporting on data.</p>
+          <p class="tools">SQL · pandas · Power BI · MS Excel</p>
+        </li>
+        <li>
+          <h3>Full-stack web</h3>
+          <p>React front ends with Node.js back ends, real-time features and caching.</p>
+          <p class="tools">React · Next.js · Node.js · Express · Socket.io · HTML · CSS</p>
+        </li>
+        <li>
+          <h3>Databases</h3>
+          <p>Relational and document stores, plus a caching layer.</p>
+          <p class="tools">MySQL · MongoDB Atlas · Redis</p>
+        </li>
+        <li>
+          <h3>Systems and graphics</h3>
+          <p>Work close to the machine, from 3D rendering to Assembly.</p>
+          <p class="tools">OpenGL · 8086 Assembly · EMU8086</p>
+        </li>
+        <li>
+          <h3>Tools</h3>
+          <p>Version control, design and presentation tools.</p>
+          <p class="tools">Git/GitHub · Figma · Canva · MS PowerPoint · Google Workspace · AI tools</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="projects">
+    <p class="label">projects</p>
+    <h2>Selected projects</h2>
+    <div class="sec-body">
+      <div class="chips" role="group" aria-label="Filter projects">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="web" aria-pressed="false">Web apps</button>
+        <button class="chip" type="button" data-filter="software" aria-pressed="false">Software</button>
+        <button class="chip" type="button" data-filter="hardware" aria-pressed="false">Hardware</button>
+      </div>
+      <ul class="projects">
+        <li class="proj" data-cat="web">
+          <div>
+            <span class="kind">Web app · Next.js, Socket.io, MongoDB, Redis</span>
+            <h3>SmartTransit</h3>
+            <p>A full-stack public transportation monitoring and passenger assistance system. It uses Next.js (App Router) for the app, Socket.io for real-time communication, MongoDB for the database and Redis as a caching layer.</p>
+          </div>
+          <a class="go" href="https://github.com/maimucodes/SmartTransit" target="_blank" rel="noopener noreferrer" aria-label="SmartTransit on GitHub">GitHub ↗</a>
+        </li>
+        <li class="proj" data-cat="web">
+          <div>
+            <span class="kind">Web app · MERN stack</span>
+            <h3>ReadTrack 2.0</h3>
+            <p>A full-stack app for tracking books, sharing reviews and getting personalized reading recommendations.</p>
+          </div>
+          <a class="go" href="https://github.com/maimucodes/ReadTrack2.0" target="_blank" rel="noopener noreferrer" aria-label="ReadTrack 2.0 on GitHub">GitHub ↗</a>
+        </li>
+        <li class="proj" data-cat="web">
+          <div>
+            <span class="kind">Web app · Course project CSE370</span>
+            <h3>ReadTrack</h3>
+            <p>A web platform for book lovers. Readers can track their books, set reading goals and share reviews.</p>
+          </div>
+          <a class="go" href="https://github.com/maimucodes/ReadTrack" target="_blank" rel="noopener noreferrer" aria-label="ReadTrack on GitHub">GitHub ↗</a>
+        </li>
+        <li class="proj" data-cat="software">
+          <div>
+            <span class="kind">Software · Python, OpenGL · Course project CSE423</span>
+            <h3>OpenGL Car Game</h3>
+            <p>A retro 3D endless racing game with traffic, fuel and police mechanics.</p>
+          </div>
+          <a class="go" href="https://github.com/maimucodes/OpenGL-Car-Game-CSE423" target="_blank" rel="noopener noreferrer" aria-label="OpenGL Car Game on GitHub">GitHub ↗</a>
+        </li>
+        <li class="proj" data-cat="hardware">
+          <div>
+            <span class="kind">Hardware · 8086 Assembly, EMU8086</span>
+            <h3>ASMCalc</h3>
+            <p>A menu-driven calculator that implements arithmetic and mathematical operations at the machine-instruction level.</p>
+          </div>
+          <a class="go" href="https://github.com/maimucodes/ASMCalc-EMU8086" target="_blank" rel="noopener noreferrer" aria-label="ASMCalc on GitHub">GitHub ↗</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="experience">
+    <p class="label">experience</p>
+    <h2>Leading a volunteer response team</h2>
+    <div class="sec-body">
+      <p class="lead-in">The BRAC University Response Team (BURT) is a volunteer-run student organization with 100+ members.</p>
+      <ol class="timeline">
+        <li>
+          <span class="when">2025 – 2026</span>
+          <h3>Director, Communications Department</h3>
+          <p class="org">BRAC University Response Team (BURT)</p>
+          <ul>
+            <li>Led the communications department for one year, managing internal and external messaging, announcements and the social media presence.</li>
+            <li>Co-led the 2025 <a href="https://www.bracurt.org/projects/blood-donation-campaign" target="_blank" rel="noopener noreferrer">Blood Donation Campaign</a>, coordinating logistics, outreach and volunteer engagement.</li>
+          </ul>
+        </li>
+        <li>
+          <span class="when">2024 – 2025</span>
+          <h3>Secretary, Human Resources</h3>
+          <p class="org">BRAC University Response Team (BURT)</p>
+          <ul>
+            <li>Oversaw HR operations, including recruitment and team coordination within the volunteer response organization.</li>
+            <li>Organized and took part in multiple <a href="https://www.bracurt.org/projects" target="_blank" rel="noopener noreferrer">social impact campaigns</a>.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="education">
+    <p class="label">education</p>
+    <h2>Education and certifications</h2>
+    <div class="sec-body">
+      <ol class="timeline">
+        <li>
+          <span class="when">2022 – 2026</span>
+          <h3>B.Sc. in Computer Science &amp; Engineering</h3>
+          <p class="org">BRAC University · CGPA 3.58 / 4.00</p>
+          <p class="detail">Relevant coursework: Machine Learning, Data Structures &amp; Algorithms, Database Management Systems, Statistics &amp; Probability</p>
+        </li>
+        <li>
+          <span class="when">2019 – 2021</span>
+          <h3>Higher Secondary Certificate, Science</h3>
+          <p class="org">Dhaka Commerce College, Dhaka · GPA 5.00</p>
+        </li>
+        <li>
+          <span class="when">Graduated 2019</span>
+          <h3>Secondary School Certificate, Science</h3>
+          <p class="org">Monipur High School &amp; College, Dhaka · GPA 4.98</p>
+        </li>
+      </ol>
+
+      <p class="sub">certifications</p>
+      <ol class="timeline">
+        <li>
+          <span class="when">May 2026</span>
+          <h3>Understanding Machine Learning</h3>
+          <p class="org"><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/457a545b200ef11e80a65c196cc7fcca3f8a1ee0" target="_blank" rel="noopener noreferrer">DataCamp statement of accomplishment ↗</a></p>
+        </li>
+        <li>
+          <span class="when">Apr 2026</span>
+          <h3>Cleaning Data in Python</h3>
+          <p class="org"><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/d6da826a21739201ee37c88c434d5fe83755f92a" target="_blank" rel="noopener noreferrer">DataCamp statement of accomplishment ↗</a></p>
+        </li>
+        <li>
+          <span class="when">Mar 2026</span>
+          <h3>Data Manipulation in Python</h3>
+          <p class="org"><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/419d693f6b9c013e26488445aa49320892c9bc73" target="_blank" rel="noopener noreferrer">DataCamp statement of accomplishment ↗</a></p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="references">
+    <p class="label">references</p>
+    <h2>References</h2>
+    <div class="sec-body">
+      <div class="ref">
+        <h3>Md. Tawhid Anwar</h3>
+        <p>Senior Lecturer, CSE · BRAC University</p>
+        <p>Thesis supervisor. Contact details available on request.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="contact">
+    <p class="label">contact</p>
+    <p class="pitch">Open to roles that combine technical and organizational work.</p>
+    <div class="mailrow">
+      <a class="mail" id="mail" href="mailto:mai00muna.23@gmail.com">mai00muna.23@gmail.com</a>
+      <button class="btn sm" id="copy" type="button">Copy email</button>
+      <span id="copied" role="status" aria-live="polite"></span>
+    </div>
+    <ul class="pills">
+      <li><a class="pill" href="https://github.com/maimucodes" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+      <li><a class="pill" href="https://www.linkedin.com/in/maimuna-morshed-593202429/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+    </ul>
+    <p class="where">Based in Dhaka, Bangladesh</p>
+  </section>
+
+  <footer>
+    <span>© 2026 Maimuna Morshed</span>
+    <span>Plain HTML, CSS and JavaScript</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var w1 = document.getElementById('w1');
+  var w2 = document.getElementById('w2');
+  var N = 200;
+  function trace(t, a, b, f1, f2, ph) {
+    var d = '';
+    for (var i = 0; i <= N; i++) {
+      var u = i / N;
+      var env = 0.25 + 0.75 * Math.sin(Math.PI * u);
+      var y = 50 + env * (a * Math.sin(u * f1 + t + ph) + b * Math.sin(u * f2 + t * 1.7));
+      d += (i ? 'L' : 'M') + (u * 1000).toFixed(1) + ' ' + y.toFixed(2);
+    }
+    return d;
+  }
+  function draw(t) {
+    w1.setAttribute('d', trace(t, 24, 12, 16, 41, 0));
+    w2.setAttribute('d', trace(-t * 0.8, 18, 9, 10, 27, 1.3));
+  }
+  draw(0);
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    var t = 0;
+    (function loop() { t += 0.012; draw(t); requestAnimationFrame(loop); })();
+  }
+
+  var chips = document.querySelectorAll('.chip');
+  var cards = document.querySelectorAll('.proj');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var f = chip.getAttribute('data-filter');
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      cards.forEach(function (card) {
+        card.hidden = !(f === 'all' || card.getAttribute('data-cat') === f);
+      });
+    });
+  });
+
+  var btn = document.getElementById('copy');
+  var out = document.getElementById('copied');
+  var mail = 'mai00muna.23@gmail.com';
+  function fallback() {
+    try {
+      var r = document.createRange();
+      r.selectNodeContents(document.getElementById('mail'));
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+    } catch (e) {}
+    out.textContent = 'Address selected. Copy it with your keyboard.';
+  }
+  btn.addEventListener('click', function () {
+    try {
+      navigator.clipboard.writeText(mail).then(function () { out.textContent = 'Copied'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
